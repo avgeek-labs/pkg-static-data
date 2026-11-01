@@ -49,7 +49,7 @@
     "format:check": "prettier --check .",
     "changeset": "changeset",
     "version-packages": "changeset version && npm install --package-lock-only --ignore-scripts",
-    "release": "changeset publish"
+    "release": "changeset publish && npm run test:published"
   },
   "devDependencies": {
     "typescript": "6.0.3",
