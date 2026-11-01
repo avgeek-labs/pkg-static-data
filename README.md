@@ -6,49 +6,54 @@ Flag artwork is hosted separately as SVGs on `assets.avgeek.ltd/country-flags/`.
 
 Version 0.1.1 moves all flag URLs to this shared public-assets path.
 
-Package name: `@avgeek-oss/country-data`. It exports ESM and TypeScript
+Package name: `@avgeek-labs/static-data/geo`. It exports ESM and TypeScript
 declarations for Node.js 22+ and modern browser bundlers.
 
 ```sh
-npm install @avgeek-oss/country-data
+npm install @avgeek-labs/static-data
 ```
 
 ```ts
 import {
-  getCountry, getCountryName, getCountryFlagUrl, getCountryOptions,
-  filterCountries, searchCountries, getCountriesByCallingCode,
-} from '@avgeek-oss/country-data';
+  getCountry,
+  getCountryName,
+  getCountryFlagUrl,
+  getCountryOptions,
+  filterCountries,
+  searchCountries,
+  getCountriesByCallingCode,
+} from "@avgeek-labs/static-data/geo";
 
-getCountry('in');          // India; also accepts IND or 356
-getCountryName('IN', 'ta'); // இந்தியா
-getCountryFlagUrl('IN');   // https://assets.avgeek.ltd/country-flags/in.svg
-getCountryOptions({ locale: 'fr', filter: { isIndependent: true } });
-filterCountries({ currencyCode: 'EUR', isLandlocked: true });
-searchCountries('भारत', 'hi');
-getCountriesByCallingCode('+1'); // All matching countries/territories
+getCountry("in"); // India; also accepts IND or 356
+getCountryName("IN", "ta"); // இந்தியா
+getCountryFlagUrl("IN"); // https://assets.avgeek.ltd/country-flags/in.svg
+getCountryOptions({ locale: "fr", filter: { isIndependent: true } });
+filterCountries({ currencyCode: "EUR", isLandlocked: true });
+searchCountries("भारत", "hi");
+getCountriesByCallingCode("+1"); // All matching countries/territories
 ```
 
 ## API
 
-| Export | Purpose |
-| --- | --- |
-| `countries` | Deeply frozen country snapshot, sorted by alpha-2 code |
-| `queryCountries({ select?, where?, locale?, orderBy?, limit? })` | Filter, localize, sort, and select fields in one query |
-| `getCountry(code)` | Find by alpha-2, alpha-3, or three-digit numeric string |
-| `getCountryByAlphaTwo(code)` | Find by alpha-2 code |
-| `getCountryByAlphaThree(code)` | Find by alpha-3 code |
-| `getCountryByNumeric(code)` | Find by numeric string, retaining leading zeros |
-| `getCountryName(code, locale?)` | Localized common display name |
-| `getCountryFlagUrl(code)` | Curated SVG URL |
-| `getCountryOptions({ locale?, filter? })` | Localized, sorted `{ value, label, flagUrl }` picker options |
-| `filterCountries(filter?)` | Combine geographic, currency, language, timezone, independence, driving, and measurement filters |
-| `searchCountries(query, locale?)` | Search codes, names, aliases, native names, and localized names |
-| `getCountriesByCallingCode(code)` | Find every country sharing a calling code |
-| `getParentCountry(code)` | Find the administering/realm country, if recorded |
-| `getCountryTerritories(code)` | Find territories linked to a country |
-| `resolveLocale(locale?)` | Resolve a BCP 47 locale to bundled localization |
-| `supportedLocales` | List the bundled locales |
-| `datasetInfo` | Snapshot and localization versions |
+| Export                                                           | Purpose                                                                                          |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `countries`                                                      | Deeply frozen country snapshot, sorted by alpha-2 code                                           |
+| `queryCountries({ select?, where?, locale?, orderBy?, limit? })` | Filter, localize, sort, and select fields in one query                                           |
+| `getCountry(code)`                                               | Find by alpha-2, alpha-3, or three-digit numeric string                                          |
+| `getCountryByAlphaTwo(code)`                                     | Find by alpha-2 code                                                                             |
+| `getCountryByAlphaThree(code)`                                   | Find by alpha-3 code                                                                             |
+| `getCountryByNumeric(code)`                                      | Find by numeric string, retaining leading zeros                                                  |
+| `getCountryName(code, locale?)`                                  | Localized common display name                                                                    |
+| `getCountryFlagUrl(code)`                                        | Curated SVG URL                                                                                  |
+| `getCountryOptions({ locale?, filter? })`                        | Localized, sorted `{ value, label, flagUrl }` picker options                                     |
+| `filterCountries(filter?)`                                       | Combine geographic, currency, language, timezone, independence, driving, and measurement filters |
+| `searchCountries(query, locale?)`                                | Search codes, names, aliases, native names, and localized names                                  |
+| `getCountriesByCallingCode(code)`                                | Find every country sharing a calling code                                                        |
+| `getParentCountry(code)`                                         | Find the administering/realm country, if recorded                                                |
+| `getCountryTerritories(code)`                                    | Find territories linked to a country                                                             |
+| `resolveLocale(locale?)`                                         | Resolve a BCP 47 locale to bundled localization                                                  |
+| `supportedLocales`                                               | List the bundled locales                                                                         |
+| `datasetInfo`                                                    | Snapshot and localization versions                                                               |
 
 Unknown country codes return `undefined`; unknown calling codes return an empty
 array. Codes are trimmed and alpha codes are case-insensitive. Numeric codes are
@@ -68,13 +73,13 @@ reference immutable data; modify copies if an application needs editable state.
 For a country/phone picker, request just the fields needed by the application:
 
 ```ts
-import { queryCountries } from '@avgeek-oss/country-data';
+import { queryCountries } from "@avgeek-labs/static-data/geo";
 
 const countries = queryCountries({
-  select: ['countryAlphaTwo', 'countryName', 'phonePrefix'],
+  select: ["countryAlphaTwo", "countryName", "phonePrefix"],
   where: { hasCallingCode: true },
-  locale: 'en',
-  orderBy: { field: 'countryName', direction: 'asc' },
+  locale: "en",
+  orderBy: { field: "countryName", direction: "asc" },
 });
 // Includes { countryAlphaTwo: 'IN', countryName: 'India', phonePrefix: '+91' }
 ```
@@ -118,10 +123,9 @@ the runtime's ICU version. Country name content comes from the pinned snapshot.
 
 ## Data and maintenance
 
-[Rootset Countries](https://rootset.avgeek.ltd/databases/01M4S2E5C9R8FYHH9VR7XT9ZBT/tables/01M4S2EBZY9FA6B57E9C0CKMBR)
-is the editable source of truth. `src/countries.json` is the release snapshot;
-applications do not contact Rootset. The `/data` export provides the same raw
-JSON snapshot for non-function consumers.
+The geo snapshot in `src/geo/countries.json` contains country reference data;
+applications do not contact an API. The `/geo/data` export provides the same raw
+JSON snapshot. It was restored from the country-data 0.1.1 source archive.
 
 The snapshot includes identifiers, official/native names and aliases, regional
 classification, capitals, currencies, official language codes, IANA timezones,
@@ -155,20 +159,26 @@ the old hostname to the shared public-assets path. Tests validate the data and p
 Package verification installs the packed tarball into a clean temporary project
 and checks JavaScript and TypeScript consumers.
 
-## Publishing
+## Installation and releases
 
-GitHub Actions publishes stable `vX.Y.Z` tags to public npm after both Node.js
-22 and 24 verification jobs pass. The tag must match `package.json` and point
-to a commit on `main`. The publish job downloads the tested tarball, checks its
-integrity, publishes it, then verifies the registry bytes and a fresh consumer.
+Use Node 26 and npm 11.20.0. The package is public on GitHub Packages. GitHub's
+npm registry requires authentication for public packages too. Configure `.npmrc`:
 
-Configure the package's npm trusted publisher for owner `avgeek-oss`, repository
-`pkg-country-data`, and workflow `ci.yml`, with publishing allowed. GitHub OIDC
-authenticates the publish job; no npm token secret is needed. npm supplies
-provenance for trusted publications.
+```ini
+@avgeek-labs:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+```
 
-To release, merge the version and snapshot changes after CI passes, then push
-the matching tag from that merged commit. Never reuse a version already on npm.
+Supply `NODE_AUTH_TOKEN` with `read:packages` access for local installation.
+The root export exposes a `geo` namespace; country lookups are available from
+`@avgeek-labs/static-data/geo`.
+
+For a data or API change, run `npm run changeset` and commit the version note.
+GitHub Actions opens a release PR with the version and changelog. Merging it
+publishes through `GITHUB_TOKEN` and creates a GitHub release and tag. Releases
+run the full checks and a fresh registry consumer. Published versions are
+immutable; corrections get a new version. The CI workflow supports manual
+dispatch for release PRs created by `GITHUB_TOKEN`.
 
 ## Licensing
 

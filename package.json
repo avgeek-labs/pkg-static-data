@@ -1,29 +1,60 @@
 {
-  "name": "@avgeek-oss/country-data",
+  "name": "@avgeek-labs/static-data",
   "version": "0.1.1",
-  "description": "Offline country reference data, localized names, flags, and typed lookups for JavaScript applications.",
+  "description": "Static reference data and typed lookups for JavaScript applications. Import countries, localized names, and flag URLs from the geo subpath.",
   "type": "module",
   "license": "(MIT AND ODbL-1.0 AND Unicode-3.0)",
   "sideEffects": false,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
-    "./data": "./dist/countries.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./geo": {
+      "types": "./dist/geo/index.d.ts",
+      "import": "./dist/geo/index.js"
+    },
+    "./geo/data": "./dist/geo/countries.json",
     "./package.json": "./package.json"
   },
-  "files": ["dist", "LICENSE", "LICENSE-DATA", "LICENSE-UNICODE", "NOTICE.md"],
-  "engines": { "node": ">=22" },
-  "repository": { "type": "git", "url": "https://github.com/avgeek-oss/pkg-country-data.git" },
-  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org" },
+  "files": [
+    "dist",
+    "LICENSE",
+    "LICENSE-DATA",
+    "LICENSE-UNICODE",
+    "NOTICE.md"
+  ],
+  "engines": {
+    "node": "26.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avgeek-labs/pkg-static-data.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "npm run build && node --test test/*.test.mjs",
     "test:package": "node scripts/test-package.mjs",
     "test:published": "node scripts/test-package.mjs --published",
-    "verify": "npm run typecheck && npm test && npm run test:package",
-    "prepack": "npm run build"
+    "verify": "npm run format:check && npm run typecheck && npm test && npm run test:package",
+    "prepack": "npm run build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "changeset": "changeset",
+    "version-packages": "changeset version && npm install --package-lock-only --ignore-scripts",
+    "release": "changeset publish"
   },
-  "devDependencies": { "typescript": "5.9.3" }
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "prettier": "3.9.10",
+    "@changesets/cli": "3.0.3"
+  },
+  "packageManager": "npm@11.20.0"
 }

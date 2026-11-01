@@ -76,9 +76,12 @@ export interface CountryQueryFilter extends CountryFilter {
   readonly phoneCallingCode?: string;
 }
 
-export type CountrySortField = "countryName" | "countryAlphaTwo" | "countryAlphaThree" | "countryNumeric";
+export type CountrySortField =
+  "countryName" | "countryAlphaTwo" | "countryAlphaThree" | "countryNumeric";
 
-export interface CountryQuery<Field extends keyof CountryQueryRecord = keyof CountryQueryRecord> {
+export interface CountryQuery<
+  Field extends keyof CountryQueryRecord = keyof CountryQueryRecord,
+> {
   readonly select?: readonly Field[];
   readonly where?: CountryQueryFilter;
   /** Localize countryName when supplied; other country fields retain their stored values. */
