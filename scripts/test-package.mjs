@@ -68,7 +68,7 @@ try {
     if (geo.getCountry('IN')?.countryAlphaThree !== 'IND') throw new Error('Geo namespace failed');
     import { getCountry, getCountryName, getCountryOptions, getCountryFlagUrl, queryCountries } from '@avgeek-labs/static-data/geo';
     import data from '@avgeek-labs/static-data/geo/data' with { type: 'json' };
-    if (getCountryFlagUrl('IN') !== 'https://assets.avgeek.ltd/country-flags/in.svg' || data.some(country => country.flagUrl !== 'https://assets.avgeek.ltd/country-flags/' + country.countryAlphaTwo.toLowerCase() + '.svg')) throw new Error('Packed flag URLs failed');
+    if (getCountryFlagUrl('IN') !== 'https://static.avgeek.ltd/geo/country-flags/in.svg' || data.some(country => country.flagUrl !== 'https://static.avgeek.ltd/geo/country-flags/' + country.countryAlphaTwo.toLowerCase() + '.svg')) throw new Error('Packed flag URLs failed');
     if (getCountry('IND')?.countryNumeric !== '356' || getCountryName('IN', 'ta') !== 'இந்தியா' || data.length !== 249 || getCountryOptions().length !== 249 || queryCountries({ select: ['phonePrefix'], where: { phoneCallingCode: '91' } })[0]?.phonePrefix !== '+91') throw new Error('Packed API failed');`;
   await writeFile(join(temporary, "consumer.mjs"), consumer);
   execFileSync(process.execPath, [join(temporary, "consumer.mjs")], {

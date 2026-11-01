@@ -24,12 +24,14 @@ test("Rootset imports migrate legacy flag URLs and still reject unrelated hosts"
     for (const origin of [
       "https://oss-country-flags.avgeek.ltd/",
       "https://assets.avgeek.io/country-flags/",
+      "https://assets.avgeek.ltd/country-flags/",
+      "https://static.avgeek.ltd/geo/country-flags/",
     ]) {
       const rows = snapshot.map((country) => ({
         values: {
           ...country,
           flagUrl: country.flagUrl.replace(
-            "https://assets.avgeek.ltd/country-flags/",
+            "https://static.avgeek.ltd/geo/country-flags/",
             origin,
           ),
         },

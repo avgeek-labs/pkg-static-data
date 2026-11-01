@@ -2,7 +2,8 @@
 
 Country reference data and localized names for JavaScript applications. Includes
 249 ISO countries and territories, with no runtime dependencies or network calls.
-Flag artwork is hosted separately as SVGs on `assets.avgeek.ltd/country-flags/`.
+Flag artwork is hosted separately as SVGs on
+`static.avgeek.ltd/geo/country-flags/`, using lowercase ISO alpha-2 filenames.
 
 Package name: `@avgeek-labs/static-data`. Country data is available from the
 `/geo` export, with ESM and TypeScript declarations for Node.js 26 and modern
@@ -25,7 +26,7 @@ import {
 
 getCountry("in"); // India; also accepts IND or 356
 getCountryName("IN", "ta"); // இந்தியா
-getCountryFlagUrl("IN"); // https://assets.avgeek.ltd/country-flags/in.svg
+getCountryFlagUrl("IN"); // https://static.avgeek.ltd/geo/country-flags/in.svg
 getCountryOptions({ locale: "fr", filter: { isIndependent: true } });
 filterCountries({ currencyCode: "EUR", isLandlocked: true });
 searchCountries("भारत", "hi");

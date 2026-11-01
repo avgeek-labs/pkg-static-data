@@ -17,8 +17,8 @@ const countries = validateData(
     return {
       ...country,
       flagUrl: country.flagUrl?.replace(
-        /^https:\/\/(?:oss-country-flags\.avgeek\.ltd\/|assets\.avgeek\.io\/country-flags\/)/,
-        "https://assets.avgeek.ltd/country-flags/",
+        /^https:\/\/(?:oss-country-flags\.avgeek\.ltd\/|assets\.avgeek\.(?:io|ltd)\/country-flags\/)/,
+        "https://static.avgeek.ltd/geo/country-flags/",
       ),
     };
   }),

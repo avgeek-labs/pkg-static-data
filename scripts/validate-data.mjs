@@ -105,7 +105,7 @@ export function validateData(countries) {
     assert.match(country.countryNumeric, /^\d{3}$/);
     assert.equal(
       country.flagUrl,
-      `https://assets.avgeek.ltd/country-flags/${code.toLowerCase()}.svg`,
+      `https://static.avgeek.ltd/geo/country-flags/${code.toLowerCase()}.svg`,
     );
     assert.ok(
       Number.isFinite(Date.parse(country.lastVerifiedAt)),
