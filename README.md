@@ -177,8 +177,9 @@ For a data or API change, run `npm run changeset` and commit the version note.
 GitHub Actions opens a release PR with the version and changelog. Merging it
 publishes through `GITHUB_TOKEN` and creates a GitHub release and tag. Releases
 run the full checks and a fresh registry consumer. Published versions are
-immutable; corrections get a new version. The CI workflow supports manual
-dispatch for release PRs created by `GITHUB_TOKEN`.
+immutable; corrections get a new version. On release PRs created by
+`GITHUB_TOKEN`, use **Approve workflows to run** before merging. Manual CI
+dispatch is also available.
 
 ## Licensing
 
