@@ -1,13 +1,12 @@
-# Country Data
+# Static Data
 
 Country reference data and localized names for JavaScript applications. Includes
 249 ISO countries and territories, with no runtime dependencies or network calls.
 Flag artwork is hosted separately as SVGs on `assets.avgeek.ltd/country-flags/`.
 
-Version 0.1.1 moves all flag URLs to this shared public-assets path.
-
-Package name: `@avgeek-labs/static-data/geo`. It exports ESM and TypeScript
-declarations for Node.js 22+ and modern browser bundlers.
+Package name: `@avgeek-labs/static-data`. Country data is available from the
+`/geo` export, with ESM and TypeScript declarations for Node.js 26 and modern
+browser bundlers.
 
 ```sh
 npm install @avgeek-labs/static-data
