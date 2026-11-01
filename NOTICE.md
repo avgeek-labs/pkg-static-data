@@ -21,7 +21,7 @@ Copyright © 2004–2026 Unicode, Inc. Names were selected for 249 ISO entries a
 Other verification references include UN M49 geographical regions, ISO country
 identifiers, Unicode CLDR currency/language/measurement metadata, IANA timezone
 and root-zone data, and national/territorial administration and dialing sources.
-The curated snapshot is maintained in the Avgeek Rootset Countries table.
+The snapshot was originally curated in the Avgeek Rootset Countries table.
 
 Flag artwork is hosted externally and is not included in this repository or npm
 tarball. This package supplies URLs; it does not grant additional rights in

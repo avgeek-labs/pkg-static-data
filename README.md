@@ -142,22 +142,17 @@ are not treated as dependencies. Antarctica is not assigned a parent.
 `measurementSystem` follows CLDR defaults (`metric`, `ussystem`, `uksystem`),
 not a claim that every measurement in a country uses that system.
 
-To refresh, export all rows from Rootset as a JSON array (row objects with
-`values`, or plain country objects), then run:
+To update the country data, edit `src/geo/countries.json` and review the snapshot
+diff. Update `datasetInfo` when the snapshot date or schema changes, then run:
 
 ```sh
 npm ci
-node scripts/import-rootset.mjs /absolute/path/countries-export.json
 npm run verify
 ```
 
-Review the snapshot diff, update `datasetInfo` when its date/schema changes,
-and commit it before release. Do not put Rootset credentials in this repository.
-Import fails on missing fields, duplicate ISO identifiers, incomplete locale
-maps, or missing parent references. The importer migrates legacy flag URLs from
-the old hostname to the shared public-assets path. Tests validate the data and public API.
-Package verification installs the packed tarball into a clean temporary project
-and checks JavaScript and TypeScript consumers.
+Validation checks required fields, unique ISO identifiers, complete locale maps,
+parent references, and flag URLs. Package checks install the packed tarball into
+a clean temporary project and verify JavaScript and TypeScript consumers.
 
 ## Installation and releases
 
