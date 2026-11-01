@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdir, mkdtemp, readFile, writeFile, rm } from "node:fs/promises";
+import { mkdtemp, readFile, writeFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,16 +8,9 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const temporary = await mkdtemp(join(tmpdir(), "country-data-package-"));
 const published = process.argv.includes("--published");
-const candidate = process.argv.includes("--candidate");
-assert.ok(
-  !(published && candidate),
-  "Choose a candidate or the published package.",
-);
 try {
-  const destination = candidate ? join(root, "artifacts") : temporary;
-  await mkdir(destination, { recursive: true });
   const packed = JSON.parse(
-    execFileSync("npm", ["pack", "--json", "--pack-destination", destination], {
+    execFileSync("npm", ["pack", "--json", "--pack-destination", temporary], {
       cwd: root,
       encoding: "utf8",
     }),
@@ -51,7 +44,7 @@ try {
   );
   const target = published
     ? `${manifest.name}@${manifest.version}`
-    : join(destination, packed.filename);
+    : join(temporary, packed.filename);
   execFileSync(
     "npm",
     [
@@ -68,7 +61,7 @@ try {
     if (geo.getCountry('IN')?.countryAlphaThree !== 'IND') throw new Error('Geo namespace failed');
     import { getCountry, getCountryName, getCountryOptions, getCountryFlagUrl, queryCountries } from '@avgeek-labs/static-data/geo';
     import data from '@avgeek-labs/static-data/geo/data' with { type: 'json' };
-    if (getCountryFlagUrl('IN') !== 'https://assets.avgeek.ltd/country-flags/in.svg' || data.some(country => country.flagUrl !== 'https://assets.avgeek.ltd/country-flags/' + country.countryAlphaTwo.toLowerCase() + '.svg')) throw new Error('Packed flag URLs failed');
+    if (getCountryFlagUrl('IN') !== 'https://static.avgeek.ltd/geo/country-flags/in.svg' || data.some(country => country.flagUrl !== 'https://static.avgeek.ltd/geo/country-flags/' + country.countryAlphaTwo.toLowerCase() + '.svg')) throw new Error('Packed flag URLs failed');
     if (getCountry('IND')?.countryNumeric !== '356' || getCountryName('IN', 'ta') !== 'இந்தியா' || data.length !== 249 || getCountryOptions().length !== 249 || queryCountries({ select: ['phonePrefix'], where: { phoneCallingCode: '91' } })[0]?.phonePrefix !== '+91') throw new Error('Packed API failed');`;
   await writeFile(join(temporary, "consumer.mjs"), consumer);
   execFileSync(process.execPath, [join(temporary, "consumer.mjs")], {
@@ -112,11 +105,6 @@ try {
     ],
     { cwd: temporary, stdio: "pipe" },
   );
-  if (candidate)
-    await writeFile(
-      join(destination, "package.json"),
-      `${JSON.stringify(packed, null, 2)}\n`,
-    );
   console.log(
     `${published ? "Published" : "Packed"} JavaScript and TypeScript consumers passed (${packed.size} bytes compressed).`,
   );

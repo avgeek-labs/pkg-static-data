@@ -31,7 +31,7 @@ function freeze<T>(value: T): T {
   return value;
 }
 
-/** Immutable snapshot of the curated Rootset country table. */
+/** Immutable snapshot of the curated country data. */
 export const countries: readonly Country[] = freeze(
   snapshot as unknown as Country[],
 );

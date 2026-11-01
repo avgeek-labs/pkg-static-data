@@ -167,7 +167,7 @@ test("picker options are localized, filtered, sorted, and isolated from the snap
   );
   assert.equal(
     getCountryFlagUrl("in"),
-    "https://assets.avgeek.ltd/country-flags/in.svg",
+    "https://static.avgeek.ltd/geo/country-flags/in.svg",
   );
   assert.equal(getCountryFlagUrl("ZZ"), undefined);
 });
