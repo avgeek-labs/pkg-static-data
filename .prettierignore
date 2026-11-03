@@ -1,4 +1,5 @@
-dist/
 node_modules/
+dist/
+pnpm-lock.yaml
 src/geo/countries.json
 LICENSE*

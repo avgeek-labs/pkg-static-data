@@ -40,21 +40,21 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "npm run build && node --test test/*.test.mjs",
+    "test": "pnpm build && node --test test/*.test.mjs",
     "test:package": "node scripts/test-package.mjs",
     "test:published": "node scripts/test-package.mjs --published",
-    "verify": "npm run format:check && npm run typecheck && npm test && npm run test:package",
-    "prepack": "npm run build",
+    "verify": "pnpm format:check && pnpm typecheck && pnpm test && pnpm test:package",
+    "prepack": "pnpm build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "changeset": "changeset",
-    "version-packages": "changeset version && npm install --package-lock-only --ignore-scripts",
-    "release": "changeset publish && npm run test:published"
+    "version-packages": "changeset version && pnpm install --lockfile-only",
+    "release": "changeset publish && pnpm test:published"
   },
   "devDependencies": {
     "typescript": "6.0.3",
     "prettier": "3.9.10",
     "@changesets/cli": "3.0.3"
   },
-  "packageManager": "npm@11.20.0"
+  "packageManager": "pnpm@12.16.1"
 }
