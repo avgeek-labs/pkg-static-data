@@ -1,5 +1,11 @@
 # @avgeek-labs/static-data
 
+## 0.2.2
+
+### Patch Changes
+
+- d521944: Standardize package development, isolated consumer verification, and GitHub Packages releases on pnpm. Package usage instructions are maintained in dev-skills.
+
 ## 0.2.1
 
 ### Patch Changes

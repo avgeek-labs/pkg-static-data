@@ -1,6 +1,6 @@
 {
   "name": "@avgeek-labs/static-data",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Static reference data and typed lookups for JavaScript applications. Import countries, localized names, and flag URLs from the geo subpath.",
   "type": "module",
   "license": "(MIT AND ODbL-1.0 AND Unicode-3.0)",
