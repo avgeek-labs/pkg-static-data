@@ -1,5 +1,7 @@
-# static-data
+### Static Data
 
-`@avgeek-labs/static-data` contains country reference snapshots and typed lookups. Attribution and data licenses are in `NOTICE.md` and the LICENSE files.
+Static reference data and typed lookups for JavaScript and TypeScript.
 
-Usage and development instructions: [Avgeek dev-skills](https://github.com/avgeek-labs/dev-skills).
+Package docs: https://kb.avgeek.ltd/doc/static-data-fwtjtUb7lK
+
+Attribution and data licenses remain in `NOTICE.md` and the repository LICENSE files.
