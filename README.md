@@ -2,6 +2,6 @@
 
 Static reference data and typed lookups for JavaScript and TypeScript.
 
-Package docs: https://kb.avgeek.ltd/doc/static-data-fwtjtUb7lK
+Package docs: https://app.notion.com/p/Static-Data-42223551f82e814abf4edf8ab8483ca7
 
 Attribution and data licenses remain in `NOTICE.md` and the repository LICENSE files.
