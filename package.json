@@ -43,18 +43,21 @@
     "test": "pnpm build && node --test test/*.test.mjs",
     "test:package": "node scripts/test-package.mjs",
     "test:published": "node scripts/test-package.mjs --published",
-    "verify": "pnpm format:check && pnpm typecheck && pnpm test && pnpm test:package",
+    "verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm test:package",
     "prepack": "pnpm build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "changeset": "changeset",
     "version-packages": "changeset version && pnpm install --lockfile-only",
-    "release": "changeset publish && pnpm test:published"
+    "release": "changeset publish && pnpm test:published",
+    "lint": "eslint . --max-warnings 0"
   },
   "devDependencies": {
-    "typescript": "6.0.3",
+    "@avgeek-labs/config-node": "0.3.0",
+    "@changesets/cli": "3.0.3",
+    "eslint": "10.14.0",
     "prettier": "3.9.10",
-    "@changesets/cli": "3.0.3"
+    "typescript": "6.0.3"
   },
   "packageManager": "pnpm@12.16.1"
 }
