@@ -1,5 +1,12 @@
 # @avgeek-labs/static-data
 
+## 0.2.2
+
+### Patch Changes
+
+- 33dad16: Build with the shared `@avgeek-labs/config-node` base TypeScript and ESLint presets. Output now targets ES2025 and includes declaration maps; the public API and data are unchanged.
+- d521944: Standardize package development, isolated consumer verification, and GitHub Packages releases on pnpm. Package usage instructions are maintained in dev-skills.
+
 ## 0.2.1
 
 ### Patch Changes
